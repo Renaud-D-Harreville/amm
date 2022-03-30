@@ -16,7 +16,7 @@ class IndexView(View):
 
     def _get_form_from_question(self, question: QCMQuestion):
         form = self.form_class()
-        form.fields['answers'].choices = [(answer, answer) for answer in question.answers]
+        form.fields['answers'].choices = [(index, answer) for index, answer in enumerate(question.answers)]
         form.fields['question'].initial = question.dict()
         return form
 
@@ -29,12 +29,13 @@ class IndexView(View):
 
         question_dict = json.loads(request.POST["question"])
         question = QCMQuestion(**question_dict)
-        answer = request.POST["answers"]
+        answer_indexes = [int(index) for index in request.POST.getlist('answers')]
         form = self._get_form_from_question(question)
-        if answer == question.correct_answer:
+        if question.is_correct_answer(answer_indexes):
             to_print = "Bonne réponse !"
         else:
-            to_print = f"Mauvaise réponse ! La bonne réponse était : {question.correct_answer}"
+            to_print = f"Mauvaise réponse ! Les bonnes réponses étaient : " \
+                       f"{list(index + 1 for index in question.correct_answer_indexes)}"
         return render(request, self.template_name,
                       {"question": question,
                           'form': form,

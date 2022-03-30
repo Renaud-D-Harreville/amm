@@ -2,7 +2,5 @@ from django import forms
 
 
 class QCMForm(forms.Form):
-    answers = forms.ChoiceField(widget=forms.RadioSelect)
+    answers = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple)
     question = forms.JSONField(widget=forms.HiddenInput)
-
-

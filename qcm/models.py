@@ -1,5 +1,7 @@
 from django.db import models
 
+image_dir = "resources/images/"
+
 
 class RegimeAlimentaire(models.Model):
 
@@ -20,6 +22,8 @@ class Animal(models.Model):
     short_description = models.TextField()
     long_description = models.TextField()
     regime_alimentaire = models.ForeignKey(RegimeAlimentaire, on_delete=models.CASCADE)
+    # voir pour faire une description un plus personnelle pour le régime alimentaire des animaux
+    photo = models.ImageField()
 
     def __str__(self):
         return self.name
