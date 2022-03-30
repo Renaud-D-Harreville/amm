@@ -23,7 +23,7 @@ class Animal(models.Model):
     long_description = models.TextField()
     regime_alimentaire = models.ForeignKey(RegimeAlimentaire, on_delete=models.CASCADE)
     # voir pour faire une description un plus personnelle pour le régime alimentaire des animaux
-    photo = models.ImageField()
+    # photo = models.ImageField()
 
     def __str__(self):
         return self.name
