@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QCM</title>
+</head>
+<body>
+{% if response %}
+    <p>{{ response }}</p>
+{% endif %}
+{{ question.question }}
+<form action="{% url 'index' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        {{ form }}
+    </fieldset>
+
+    <input type="submit" value="valider">
+</form>
+<form action="{% url 'index' %}" method="get">
+    <input type="submit" value="New question">
+</form>
+
+
+</body>
+</html>
