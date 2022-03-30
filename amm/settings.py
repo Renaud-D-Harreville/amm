@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-2rmbx8v-sne-d0nbz1eusl2!55g#+8fqq%!(g_!t@#%y&!-@6#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "renauddha.ovh",
+    "0.0.0.0"
+]
 
 
 # Application definition
